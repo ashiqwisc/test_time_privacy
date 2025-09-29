@@ -3,7 +3,7 @@
 [Muhammad H. Ashiq](https://github.com/ashiqwisc)¹ · [Peter Triantafillou](https://warwick.ac.uk/fac/sci/dcs/people/peter_triantafillou/)² · [Hung Yun Tseng](https://openreview.net/profile?id=~Hung_Yun_Tseng1)¹ · [Grigoris G. Chrysos](https://grigorisg9gr.github.io/_pages/about/)¹  
 ¹University of Wisconsin-Madison · ²University of Warwick
 
-[**Paper**](https://example.com) 
+[**Paper**]([https://example.com](https://www.arxiv.org/abs/2509.11625)) 
 
 ---
 
