@@ -1,0 +1,76 @@
+# Training parameters
+training:
+  batch_size: 128
+  epochs: 100
+  lr: 0.01
+  dataset: 'MNIST'
+  model_type: 'LogisticRegression'
+  train: true
+  num_layer: 2
+  hidden_dim: 100
+  num_classes: 10
+  seed: 42
+
+# Model paths
+paths:
+  trained_model_save_path: ""
+  trained_model_load_path:  "./models/pretrained_model_MNIST_LogisticRegression.pth"
+  unif_model_save_path: "./models"
+  forget_images_path: "./images/MNIST/ablations/LR_1000"
+  results_file_path: "./results/MNIST/ablations/LR_1000" 
+
+# Uniformity parameters
+uniformity:
+  num_unif: 1000
+  unif_batch_size: 10
+
+# PGD parameters
+pgd:
+  C: 10.0
+  with_pgd: true
+
+# Hessian parameters
+hessian:
+  concentration_number_b: 1
+  sample_number_n: 50
+  convex_approx_lambda: 0.0001
+  min_eig_lambda_min: 0.0
+  min_eig_bound_indiv_zeta_min: 10.0
+  scale_Hessian_H: 20.0
+
+# Privacy parameters
+privacy:
+  privacy_budget_epsilon: 0.01
+  privacy_budget_delta: 0.000001
+
+# Utility-uniformity parameters
+utility_uniformity:
+  compute_theta: false
+  distance_from_unif: 0.0
+  util_unif_tradeoff_theta: 0.75
+  use_schedule: false
+  util_unif_init: 1.0
+  bound_looseness_rho: 0.01
+
+# Lipschitz constants
+lipschitz:
+  unif_grad_lipschitz_L_K: 1.0
+  retain_grad_lipschitz_L_A: 1.0
+  unif_hessian_lipschitz_M_K: 1.0
+  retain_hessian_lipschitz_M_A: 1.0
+
+# Various options
+options:
+  run_retrain: true 
+  run_pareto: false
+  uniformity_mode: "exact" # exact, conj_grad, estimator, or skip
+  pareto_epochs: 50
+  unif_loss: "square" # kl_forward, kl_reverse, or square
+  with_reg: true
+  warmup: true
+  warmup_reg: 0.0001
+  surgery: true
+
+
+
+  

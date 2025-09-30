@@ -1,0 +1,58 @@
+data:
+  name: 'cifar100'                # TFDS dataset name
+  kwargs:
+    random_cutout: 8
+
+# Model architecture for Flax
+model:
+  arch: 'CifarViTSmall16'             # Name of JAX/Flax model in label_dp.models
+  kwargs:
+    num_classes: 100            # number of label classes
+    dtype: 'float32'           # model dtype
+
+# Training parameters for JAX LabelDP
+train:
+  batch_size: 64
+  num_epochs: 0
+  run_seed: 42
+  l2_regu: 0.0001
+
+# Learning-rate schedule
+lr_fn:
+  name: 'piecewise_constant'
+  kwargs: {}
+
+# Optimizer settings
+optimizer:
+  name: 'adamw'
+  learning_rate: 0.0001
+  kwargs: {'weight_decay': 0.05, 'b1': 0.9, 'b2': 0.999}
+
+# Precision and evaluation
+half_precision: False
+eval_splits: ['test']
+
+# Whether to reuse data from previous stage
+reuse_last_stage_data: True
+mask_last_stage_label_by_prior: True
+
+# Define each DP stage
+stage_specs:
+  - type: 'rr'                 # randomized response
+    eps: 2.0                  # privacy epsilon
+    seed: 42                    # random seed for this stage
+    data_split: 0.5           # fraction of data for this stage
+    mixup: 16                 # mixup alpha (0=no mixup)
+  - type: 'rr-with-prior'      # RR with learned prior
+    eps: 2.0
+    seed: 42
+    temperature: 1.0
+    data_split: 0.5
+    mixup: 8
+
+
+paths: 
+  trained_model_save_path: ""
+  trained_model_load_path: ""
+  forget_images_path: "./images/labeldp/CIFAR100/ViT_S_16" 
+  results_file_path: "./results/labeldp/CIFAR100/ViT_S_16"

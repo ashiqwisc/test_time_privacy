@@ -1,0 +1,116 @@
+# Training parameters
+training:
+  batch_size: 128
+  epochs: 15
+  lr: 0.0004
+  dataset: 'TinyImageNet'
+  model_type: 'ResNet50'  
+  train: true
+  num_layer: 2
+  hidden_dim: 100
+  num_classes: 200
+  seed: 42
+  downsample: false  
+  pretrain_opt: "ADAM" #or "ADAM"
+  pretrain_schedule: true  
+  early_stop_retain: 92 # when model achieves this train accuracy, stop the pretraining 
+  randomize_labels: false
+
+# Experiment control
+experiment:
+  run_pretrain: false   # If trained_model_load_path is provided, will load from there
+  run_warmup: false     
+  run_uniformity: false  # Set from uniformity_mode "skip"
+  run_retrain: true    
+  run_pareto: false        
+  run_attack: false    
+  run_nn: false         
+  run_test_set_sampling: false  
+
+# Model paths
+paths:
+  trained_model_save_path: ""
+  trained_model_load_path: ""
+  continue_train_load_path: ""
+  unif_model_save_path: "./models/pareto"
+  unif_model_load_path: "./saved_models/retrained" 
+  retrain_save_path: ""    
+  forget_images_path: "./images"
+  results_file_path: "./results/TinyImageNet/retrain"
+  log_file_path: "./results/log/TinyImageNet/retrain"
+
+# Uniformity parameters
+uniformity:
+  num_unif: 100
+  unif_batch_size: 10
+  confidence_distance: "paper"
+  mode: "skip"  # exact, conj_grad, estimator, or skip
+
+# PGD parameters
+pgd:
+  C: 10.0
+  with_pgd: false
+
+# Hessian parameters
+hessian:
+  concentration_number_b: 1
+  sample_number_n: 50
+  convex_approx_lambda: 0.0005
+  min_eig_lambda_min: 0.0
+  min_eig_bound_indiv_zeta_min: 10.0
+  scale_Hessian_H: 20.0
+
+# Privacy 
+privacy:
+  privacy_budget_epsilon: 0.01
+  privacy_budget_delta: 0.000001
+
+# Utility-uniformity 
+utility_uniformity:
+  compute_theta: false
+  distance_from_unif: 0.0
+  util_unif_tradeoff_theta: 0.75
+  use_schedule: false
+  util_unif_init: 0.75
+  bound_looseness_rho: 0.01
+
+# Lipschitz constants
+lipschitz:
+  unif_grad_lipschitz_L_K: 1.0
+  retain_grad_lipschitz_L_A: 1.0
+  unif_hessian_lipschitz_M_K: 1.0
+  retain_hessian_lipschitz_M_A: 1.0
+
+# Pareto training parameters
+pareto:
+  lr: 0.0005
+  epochs: 200
+  opt: "ADAM"
+  schedule: "none"  
+
+# options
+options:
+  retain_acc_threshold: 87 # for pareto finetuning
+  distance_threshold: 0.41 # for pareto finetuning
+  unif_loss: "kl_forward" # kl_forward, kl_reverse, or square
+  with_reg: true
+  warmup: false
+  warmup_reg: 0
+  surgery: true
+
+# Attack parameters
+attack:
+  eps: 0.00444444444
+  type: "pgd"
+
+# Nearest neighbors parameters  
+
+# Test set sampling parameters
+test_set_sampling:
+  frac_of_test: 0.5
+  new_lr: 0.1
+  new_trained_model_save_path: "./new_models"
+  new_unif_model_save_path: "./new_models"
+  new_trained_model_load_path: ""
+  new_unif_model_load_path: ""
+  ft_epochs: 20

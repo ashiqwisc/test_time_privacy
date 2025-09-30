@@ -1,0 +1,186 @@
+**Pareto finetuning:**
+test: 
+nohup python3 ./main.py --config ./experiments/configs/test.yaml > ./logs/test.txt 2>&1 &
+
+MNIST: 
+
+LR (theta = 0.0, 0.25, 0.5, 0.75, 0.95): 
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/square/LR_0.yaml > ./logs/MNIST_LR_0.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/square/LR_25.yaml > ./logs/MNIST_LR_25.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/square/LR_50.yaml > ./logs/MNIST_LR_50.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/square/LR_75.yaml > ./logs/MNIST_LR_75.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/square/LR_95.yaml > ./logs/MNIST_LR_95.txt 2>&1 &
+
+MLP (theta = 0.0, 0.25, 0.5, 0.75, 0.95): 
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/kl_forward/MLP_0.yaml > ./logs/MNIST_MLP_0.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/kl_forward/MLP_25.yaml > ./logs/MNIST_MLP_25.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/kl_forward/MLP_50.yaml > ./logs/MNIST_MLP_50.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/kl_forward/MLP_75.yaml > ./logs/MNIST_MLP_75.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/kl_forward/MLP_95.yaml > ./logs/MNIST_MLP_95.txt 2>&1 &
+
+ResNet18 (theta = 0.0, 0.25, 0.5, 0.75, 0.95): 
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/kl_forward/ResNet18_0.yaml > ./logs/MNIST_ResNet18_0.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/kl_forward/ResNet18_25.yaml > ./logs/MNIST_ResNet18_25.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/kl_forward/ResNet18_50.yaml > ./logs/MNIST_ResNet18_50.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/kl_forward/ResNet18_75.yaml > ./logs/MNIST_ResNet18_75.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/pareto/kl_forward/ResNet18_95.yaml > ./logs/MNIST_ResNet18_95.txt 2>&1 &
+
+KMNIST: 
+LR (theta = 0.0, 0.25, 0.5, 0.6, 0.75, 0.95): 
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/square/LR_0.yaml > ./logs/KMNIST_LR_0.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/square/LR_25.yaml > ./logs/KMNIST_LR_25.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/square/LR_50.yaml > ./logs/KMNIST_LR_50.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/square/LR_60.yaml > ./logs/KMNIST_LR_60.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/square/LR_75.yaml > ./logs/KMNIST_LR_75.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/square/LR_95.yaml > ./logs/KMNIST_LR_95.txt 2>&1 &
+
+MLP (theta = 0.0, 0.25, 0.5, 0.6, 0.75, 0.95): 
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/kl_forward/MLP_0.yaml > ./logs/KMNIST_MLP_0.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/kl_forward/MLP_25.yaml > ./logs/KMNIST_MLP_25.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/kl_forward/MLP_50.yaml > ./logs/KMNIST_MLP_50.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/kl_forward/MLP_60.yaml > ./logs/KMNIST_MLP_60.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/kl_forward/MLP_75.yaml > ./logs/KMNIST_MLP_75.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/kl_forward/MLP_95.yaml > ./logs/KMNIST_MLP_95.txt 2>&1 &
+
+ResNet18 (theta = 0.0, 0.5, 0.6, 0.75): 
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/kl_forward/ResNet18_0.yaml > ./logs/KMNIST_ResNet18_0.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/kl_forward/ResNet18_50.yaml > ./logs/KMNIST_ResNet18_50.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/kl_forward/ResNet18_60.yaml > ./logs/KMNIST_ResNet18_60.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/KMNIST/pareto/kl_forward/ResNet18_75.yaml > ./logs/KMNIST_ResNet18_75.txt 2>&1 &
+
+
+CIFAR10: 
+theta = 0.5, 0.6, 0.75
+ResNet8: 
+nohup python3 ./main.py --config ./experiments/configs/CIFAR10/pareto/ResNet8_75.yaml > ./logs/CIFAR10_ResNet8_75.txt 2>&1 &
+
+ResNet10: 
+nohup python3 ./main.py --config ./experiments/configs/CIFAR10/pareto/ResNet10_75.yaml > ./logs/CIFAR10_ResNet10_75.txt 2>&1 &
+
+ResNet18: 
+nohup python3 ./main.py --config ./experiments/configs/CIFAR10/pareto/ResNet18_50.yaml > ./logs/CIFAR10_ResNet18_50.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/CIFAR10/pareto/ResNet18_60.yaml > ./logs/CIFAR10_ResNet18_60.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/CIFAR10/pareto/ResNet18_65.yaml > ./logs/CIFAR10_ResNet18_65.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/CIFAR10/pareto/ResNet18_75.yaml > ./logs/CIFAR10_ResNet18_75.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/CIFAR10/pareto/ResNet18_85.yaml > ./logs/CIFAR10_ResNet18_85.txt 2>&1 &
+
+ResNet50: 
+nohup python3 ./main.py --config ./experiments/configs/CIFAR10/pareto/ResNet50_75.yaml > ./logs/CIFAR10_ResNet50_75.txt 2>&1 &
+
+
+CIFAR100: 
+theta = 0.5, 0.6, 0.75
+ResNet8: 
+nohup python3 ./main.py --config ./experiments/configs/CIFAR100/ResNet8_75.yaml > ./logs/CIFAR100_ResNet8_75.txt 2>&1 &
+
+ResNet18: 
+nohup python3 ./main.py --config ./experiments/configs/CIFAR100/ResNet18_75.yaml > ./logs/CIFAR100_ResNet18_75.txt 2>&1 &
+
+ResNet50: 
+nohup python3 ./main.py --config ./experiments/configs/CIFAR100/ResNet50_50.yaml > ./logs/CIFAR100_ResNet50_50.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/CIFAR100/ResNet50_60.yaml > ./logs/CIFAR100_ResNet50_60.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/CIFAR100/ResNet50_75.yaml > ./logs/CIFAR100_ResNet50_75.txt 2>&1 &
+
+
+SVHN:
+theta = 0.5, 0.75
+ResNet50: 
+nohup python3 ./main.py --config ./experiments/configs/SVHN/ResNet50_50.yaml > ./logs/SVHN_std_ResNet50_50.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/SVHN/ResNet50_75.yaml > ./logs/SVHN_std_ResNet50_75.txt 2>&1 &
+
+**CNS**: 
+MNIST: 
+theta = 0.0, 0.25, 0.5, 0.75, 0.95
+Exact (LR): 
+nohup python3 ./main.py --config ./experiments/configs/MNIST/certified/exact/LR_0.yaml > ./logs/MNIST_cert_LR_0.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/certified/exact/LR_25.yaml > ./logs/MNIST_cert_LR_25.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/certified/exact/LR_50.yaml > ./logs/MNIST_cert_LR_50.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/certified/exact/LR_75.yaml > ./logs/MNIST_cert_LR_75.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/MNIST/certified/exact/LR_95.yaml > ./logs/MNIST_cert_LR_95.txt 2>&1 &
+
+
+Baselines: 
+
+Synthetic: 
+
+MNIST: 
+LR: 
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/MNIST/LR_5.yaml > ./logs/synthetic_MNIST_LR_5.txt 2>&1 &
+
+MLP:
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/MNIST/MLP_5.yaml > ./logs/synthetic_MNIST_MLP_5.txt 2>&1 &
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/MNIST/MLP_25.yaml > ./logs/synthetic_MNIST_MLP_25.txt 2>&1 &
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/MNIST/MLP_125.yaml > ./logs/synthetic_MNIST_MLP_125.txt 2>&1 &
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/MNIST/MLP_250.yaml > ./logs/synthetic_MNIST_MLP_250.txt 2>&1 &
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/MNIST/MLP_500.yaml > ./logs/synthetic_MNIST_MLP_500.txt 2>&1 &
+
+ResNet18: 
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/MNIST/ResNet18_500.yaml > ./logs/synthetic_MNIST_ResNet18_500.txt 2>&1 &
+
+KMNIST: 
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/KMNIST/MLP_500.yaml > ./logs/synthetic_KMNIST_MLP_500.txt 2>&1 &
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/KMNIST/ResNet18_500.yaml > ./logs/synthetic_KMNIST_ResNet18_500.txt 2>&1 &
+
+CIFAR10: 
+ResNet18: 
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/CIFAR10/ResNet18_5.yaml > ./logs/synthetic_CIFAR10_ResNet18_5.txt 2>&1 &
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/CIFAR10/ResNet18_25.yaml > ./logs/synthetic_CIFAR10_ResNet18_25.txt 2>&1 &
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/CIFAR10/ResNet18_125.yaml > ./logs/synthetic_CIFAR10_ResNet18_125.txt 2>&1 &
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/CIFAR10/ResNet18_250.yaml > ./logs/synthetic_CIFAR10_ResNet18_250.txt 2>&1 &
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/CIFAR10/ResNet18_500.yaml > ./logs/synthetic_CIFAR10_ResNet18_500.txt 2>&1 &
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/CIFAR10/ResNet18_5000.yaml > ./logs/synthetic_CIFAR10_ResNet18_5000.txt 2>&1 &
+
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/CIFAR10/ResNet50_5000.yaml > ./logs/synthetic_CIFAR10_ResNet50_5000.txt 2>&1 &
+
+SVHN: 
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/SVHN/ResNet50_500.yaml > ./logs/synthetic_SVHN_std_ResNet50_500.txt 2>&1 &
+
+CIFAR100: 
+nohup python3 ./synthetic.py --config ./experiments/configs/synthetic/CIFAR100/ResNet50_5000.yaml > ./logs/synthetic_CIFAR100_ResNet50_5000.txt 2>&1 &
+
+LabelDP:
+
+MNIST:
+LR: 
+nohup python3 ./labeldp.py --config ./experiments/configs/labeldp/MNIST/LR.yaml --workdir ./label_dp/labeldp_workdir_MNIST_LR > ./logs/labeldp_MNIST_LR.txt 2>&1 & 
+
+ResNet18: 
+nohup python3 ./labeldp.py --config ./experiments/configs/labeldp/MNIST/ResNet.yaml --workdir ./label_dp/labeldp_workdir_MNIST_ResNet > ./logs/labeldp_MNIST_ResNet.txt 2>&1 & 
+
+KMNIST:
+ResNet18: 
+nohup python3 ./labeldp.py --config ./experiments/configs/labeldp/KMNIST/ResNet.yaml --workdir ./label_dp/labeldp_workdir_KMNIST > ./logs/labeldp_KMNIST_ResNet.txt 2>&1 & 
+
+
+SVHN:
+ResNet18: 
+nohup python3 ./labeldp.py --config ./experiments/configs/labeldp/SVHN/ResNet.yaml --workdir ./label_dp/labeldp_workdir_SVHN > ./logs/labeldp_SVHN_ResNet.txt 2>&1 & 
+
+
+CIFAR10: 
+ResNet18: 
+nohup python3 ./labeldp.py --config ./experiments/configs/labeldp/CIFAR10/ResNet.yaml --workdir ./label_dp/labeldp_workdir_CIFAR10_18 > ./logs/labeldp_CIFAR10_ResNet.txt 2>&1 & 
+
+ResNet50: 
+nohup python3 ./labeldp.py --config ./experiments/configs/labeldp/CIFAR10/ResNet50.yaml --workdir ./label_dp/labeldp_workdir_CIFAR10_50 > ./logs/labeldp_CIFAR10_ResNet50.txt 2>&1 & 
+
+CIFAR100: 
+ResNet50: 
+nohup python3 ./labeldp.py --config ./experiments/configs/labeldp/CIFAR100/ResNet50.yaml --workdir ./label_dp/labeldp_workdir_CIFAR100_50 > ./logs/labeldp_CIFAR100_ResNet50.txt 2>&1 & 
+
+**Ablations**: 
+On forget set size
+nohup python3 ./main.py --config ./experiments/configs/ablations/LR_250.yaml > ./logs/fss_LR_250.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/ablations/LR_500.yaml > ./logs/fss_LR_500.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/ablations/LR_1000.yaml > ./logs/fss_LR_1000.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/ablations/LR_5000.yaml > ./logs/fss_LR_5000.txt 2>&1 &
+
+
+nohup python3 ./main.py --config ./experiments/configs/ablations/MLP_250.yaml > ./logs/fss_MLP_250.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/ablations/MLP_500.yaml > ./logs/fss_MLP_500.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/ablations/MLP_1000.yaml > ./logs/fss_MLP_1000.txt 2>&1 &
+nohup python3 ./main.py --config ./experiments/configs/ablations/MLP_5000.yaml > ./logs/fss_MLP_5000.txt 2>&1 &
+
+
+
+nohup python3 bound_value.py > ./logs/bound_value.txt 2>&1 &

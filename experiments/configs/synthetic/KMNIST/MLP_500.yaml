@@ -1,0 +1,37 @@
+# Training parameters
+training:
+  batch_size: 128
+  epochs: 25
+  lr: 0.01
+  dataset: 'KMNIST'
+  model_type: 'MLP'
+  train: true
+  num_layer: 2
+  hidden_dim: 100
+  num_classes: 10
+  seed: 42
+
+# Model paths
+paths:
+  trained_model_load_path: "./models/pretrained_model_KMNIST_MLP.pth"
+  forget_images_path: "./images/baselines/synthetic/500_instances/eps_8_255/MLP"
+  results_file_path: "./results/KMNIST/synthetic/500_instances/MLP" 
+
+# Uniformity parameters
+uniformity:
+  num_unif: 100
+  unif_batch_size: 10
+
+# opt parameters
+opt:
+  C: 10.0
+  with_pgd: false
+  convex_approx_lambda: 0.0
+
+synthetic:
+  ball_size: 0.03137254901 # 8/255
+  ball_samples: 500
+
+options: 
+  unif_loss: "kl_forward"
+  with_reg: false

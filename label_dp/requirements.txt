@@ -1,0 +1,24 @@
+# JAX and Flax
+jax[cuda12]>=0.4.0  # or jax[cpu] if no GPU
+flax>=0.7.0
+optax>=0.1.7
+
+# Vision and ML
+timm>=0.9.0
+torch>=2.0.0  # Required by timm
+torchvision>=0.15.0
+tensorflow>=2.13.0
+tensorflow-datasets>=4.9.0
+
+# LabelDP dependencies
+ml-collections>=0.1.1
+clu>=0.0.8
+absl-py>=1.4.0
+
+# Data and utilities
+numpy>=1.24.0
+PyYAML>=6.0
+tqdm>=4.65.0
+matplotlib>=3.7.0  # For visualization
+pillow>=9.5.0
+
