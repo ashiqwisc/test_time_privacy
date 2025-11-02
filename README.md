@@ -28,7 +28,7 @@ conda activate beyond_certified_unlearning
 ## Guide
 Here is an overview of the files/folders and their functionalities: 
 - `data`: A folder containing data; if no data is contained, it will be loaded automatically during training. 
--`experiments`: A folder containing `configs` which contains hyperparameter configurations for our various experiments. Please see `experiments/configs/CIFAR100/pareto/CIFAR100_ResNet50_75.yaml` for an example config for the main Alg. 1 experiments. Furthermore, contains experiments.txt, which contains all the commands (and more) for our experiments in the paper. Configs for the synthetic, LabelDP, and Gaussian baselines are in this folder as well. 
+- `experiments`: A folder containing `configs` which contains hyperparameter configurations for our various experiments. Please see `experiments/configs/CIFAR100/pareto/CIFAR100_ResNet50_75.yaml` for an example config for the main Alg. 1 experiments. Furthermore, contains experiments.txt, which contains all the commands (and more) for our experiments in the paper. Configs for the synthetic, LabelDP, and Gaussian baselines are in this folder as well. 
 - `label_dp`: A link to the label_dp repository, which implements the paper by Ghazi et al. 2021. We use this a backend for frontend `labeldp.py`, which is integrated into our experimental pipeline so that we can use LabelDP as a baseline. Please see `experiments/configs/labeldp/CIFAR10/ResNet.yaml` for an example config file for `labeldp.py`. 
 - `evaluator.py`: Contains code to evaluate accuracy and forget set metrics.
 - `load_dataset.py`: Standard dataset loading code. 
