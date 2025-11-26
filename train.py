@@ -57,16 +57,6 @@ class ModelTrainer:
         
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
-        mixup_fn = Mixup(
-            mixup_alpha=0.2,      # tuneable
-            cutmix_alpha=1.0,     # keep CutMix active
-            prob=1.0,             # always apply (can try 0.5–0.8)
-            switch_prob=0.5,      # switch between Mixup and CutMix
-            mode='batch',
-            label_smoothing=0.1,  # aligns with your smoothing
-            num_classes=args.num_classes
-        )
-
         
         retrain_model = model
         retrain_model.to(self.device)
@@ -75,10 +65,13 @@ class ModelTrainer:
             smoothing = 0.1
         else: 
             smoothing = 0
+        # Inside your train.py or main setup
 
-        #criterion = nn.CrossEntropyLoss(label_smoothing = smoothing)
-        criterion = SoftTargetCrossEntropy()
-        
+        if args.model_type == "SVM":
+            criterion = nn.MultiMarginLoss()
+        else:
+            criterion = nn.CrossEntropyLoss()
+
         if args.pretrain_opt == "SGD": 
             # L2 regularization if reg = True
             if args.convex_approx_lambda != 0:
@@ -93,7 +86,7 @@ class ModelTrainer:
             # L2 regularization if reg = True
             if args.convex_approx_lambda != 0:
                 print("optimizer: ADAM with reg")
-                optimizer = optim.AdamW(retrain_model.parameters(), lr=args.lr, 
+                optimizer = optim.Adam(retrain_model.parameters(), lr=args.lr, 
                         weight_decay=args.convex_approx_lambda)
             else:
                 print("optimizer: ADAM without reg")
@@ -110,36 +103,22 @@ class ModelTrainer:
         train_loader = retain_loader
         train_dataset = train_loader.dataset
         
-        train_iter = iter(train_loader)
-        first_batch_x, first_batch_y = next(train_iter)
-        print(f"First batch shape: {first_batch_x.shape}")
-        print(f"First batch labels: {first_batch_y[:30]}")  # First 10 labels
-        print(f"First sample mean: {first_batch_x[0].mean():.6f}")
-        print(f"First sample std: {first_batch_x[0].std():.6f}")
-        
         # Training loop
         retrain_model.train()
         for epoch in range(args.epochs):
             running_loss = 0.0
             
-            with tqdm(train_loader, unit="batch", file=sys.__stdout__) as tepoch:
+            with tqdm(train_loader, unit="batch", file=sys.stderr) as tepoch:
                 for inputs, labels in tepoch:
                     tepoch.set_description(f"Epoch {epoch+1}/{args.epochs}")
                     inputs, labels = inputs.to(self.device), labels.to(self.device)
-                    if mixup_fn is not None:
-                        inputs, labels = mixup_fn(inputs, labels)
-                    #print("Labels min:", labels.min().item(), "max:", labels.max().item())
+                    # print("Labels min:", labels.min().item(), "max:", labels.max().item())
                     
                     optimizer.zero_grad()
                     
                     outputs = retrain_model(inputs)
-                    #print("Model output shape:", outputs.shape)
+                   #  print("Model output shape:", outputs.shape)
                     loss = criterion(outputs, labels)
-                    if torch.isnan(loss):
-                        print("LOSS IS NAN!")
-                        print("Logits min/max:", outputs.min().item(), outputs.max().item())
-                        print("Weights checksum:", sum(p.sum().item() for p in model.parameters()))
-                        break
                     loss.backward()
                     optimizer.step()
                     
@@ -158,13 +137,13 @@ class ModelTrainer:
                 scheduler.step()
 
             if args.early_stop_retain > 0: 
-                model.eval()
+                retrain_model.eval()
                 correct = 0
                 total = 0
                 with torch.no_grad():
                     for val_X, val_y in retain_val_loader:
                         val_X, val_y = val_X.to(self.device), val_y.to(self.device)
-                        outputs = model(val_X) 
+                        outputs = retrain_model(val_X) 
                         _, predicted = torch.max(outputs.data, 1)
                         total += val_y.size(0)
                         correct += (predicted == val_y).sum().item()
@@ -175,6 +154,8 @@ class ModelTrainer:
                     retain_accuracy = 100 * correct / total
                     print(f"Current retain accuracy: {retain_accuracy}")
                     if retain_accuracy > args.early_stop_retain: break 
+            
+            retrain_model.train()
         
         return retrain_model
     
